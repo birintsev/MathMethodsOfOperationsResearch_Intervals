@@ -28,13 +28,10 @@ public class App  {
     }
 
     private static DividedInterval selectFunMinimum(DividedInterval previousInterval, Function2D function2D) {
-        return Math.min(
-                    function2D.count(previousInterval.getLeft().getA())
-                    , function2D.count(previousInterval.getLeft().getB()))
-                < Math.min(
-                    function2D.count(previousInterval.getRight().getA())
-                    , function2D.count(previousInterval.getRight().getB()))
-                ?
-                previousInterval.getLeft() : previousInterval.getRight();
+        if (function2D.count(previousInterval.getLeft().getB()) >= function2D.count(previousInterval.getRight().getA())) {
+            return previousInterval.getLeft();
+        } else {
+            return previousInterval.getRight();
+        }
     }
 }
